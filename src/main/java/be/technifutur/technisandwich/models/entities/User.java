@@ -35,12 +35,12 @@ public class User implements UserDetails {
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> roles = new LinkedHashSet<>();
 
-    @OneToOne
-    @JoinColumn(name = "basket_id")
-    private Panier panier;
-
     @OneToMany(mappedBy = "user", orphanRemoval = true)
     private Set<Commande> orders = new LinkedHashSet<>();
+
+    @OneToOne(orphanRemoval = true)
+    @JoinColumn(name = "basket_id")
+    private Panier panier;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

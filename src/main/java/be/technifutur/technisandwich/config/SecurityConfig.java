@@ -37,6 +37,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests((authorize) -> {
             authorize.requestMatchers(HttpMethod.GET,"/sandwich/all").authenticated()
                     .requestMatchers(HttpMethod.POST,"/auth/register").anonymous()
+                    .requestMatchers(HttpMethod.GET,"/sandwich/diet").authenticated()
                     .anyRequest().permitAll();
         });
 

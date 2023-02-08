@@ -23,6 +23,7 @@ public class Panier {
             inverseJoinColumns = @JoinColumn(name = "sandwich_id"))
     private Set<Sandwich> sandwiches = new LinkedHashSet<>();
 
-
+    @OneToOne(mappedBy = "panier")
+    private User user;
 
 }

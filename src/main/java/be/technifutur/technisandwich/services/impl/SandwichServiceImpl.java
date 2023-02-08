@@ -2,11 +2,14 @@ package be.technifutur.technisandwich.services.impl;
 
 import be.technifutur.technisandwich.models.DTO.SandwichDTO;
 import be.technifutur.technisandwich.models.entities.Sandwich;
+import be.technifutur.technisandwich.models.entities.enums.Diet;
 import be.technifutur.technisandwich.repositories.SandwichRepository;
 import be.technifutur.technisandwich.services.SandwichService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class SandwichServiceImpl implements SandwichService {
 
@@ -22,7 +25,12 @@ public class SandwichServiceImpl implements SandwichService {
     }
 
     @Override
-    public Sandwich getOne(Long id) {
-        return null;
+    public Optional<Sandwich> getOne(Long id) {
+        return repository.findById(id);
+    }
+
+    @Override
+    public List<SandwichDTO> findAllByDiet(Diet diet) {
+        return repository.findAllByDiet(diet).stream().map(SandwichDTO::fromEntity).toList();
     }
 }

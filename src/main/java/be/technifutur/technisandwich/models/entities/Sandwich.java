@@ -1,6 +1,7 @@
 package be.technifutur.technisandwich.models.entities;
 
 
+import be.technifutur.technisandwich.models.entities.enums.Diet;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,20 +29,12 @@ public class Sandwich {
     @ManyToMany(mappedBy = "sandwiches")
     private Set<Panier> paniers = new LinkedHashSet<>();
 
+    private Diet diet;
+
     @ManyToMany
     @JoinTable(name = "sandwich_ingredients",
             joinColumns = @JoinColumn(name = "sandwich_id"),
             inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
     private Set<Ingredient> ingredients = new LinkedHashSet<>();
-
-    @ManyToMany
-    @JoinTable(name = "sandwich_diets",
-            joinColumns = @JoinColumn(name = "sandwich_id"),
-            inverseJoinColumns = @JoinColumn(name = "diet_id"))
-    private Set<Diet> diets = new LinkedHashSet<>();
-
-
-
-
 
 }
